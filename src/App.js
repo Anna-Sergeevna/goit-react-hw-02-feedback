@@ -1,23 +1,23 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import Container from 'components/Container';
 import Section from 'components/Section';
 import FeedbackOptions from 'components/FeedbackOptions';
 import Statistics from 'components/Statistics';
-import Notification from "components/Notification";
+import Notification from 'components/Notification';
 import './App.css';
 
 class App extends Component {
   state = {
     good: 0,
     neutral: 0,
-    bad: 0
+    bad: 0,
   };
-  
+
   handleClick = option => {
     console.log(option);
-    this.setState(prevState => ({    
-      [option]: prevState[option] + 1
-    }))
+    this.setState(prevState => ({
+      [option]: prevState[option] + 1,
+    }));
   };
 
   countTotalFeedback = () =>
@@ -35,12 +35,23 @@ class App extends Component {
     return (
       <Container title="Виджет отзывов">
         <Section title="Please leave feedback">
-          <FeedbackOptions options={options} onLeaveFeedback={ this.handleClick } />
+          <FeedbackOptions
+            options={options}
+            onLeaveFeedback={this.handleClick}
+          />
         </Section>
         <Section title="Statistics">
-          {total ? (<Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage} />) :
-          (<Notification message="No feedback given" />)
-          }
+          {total ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={positivePercentage}
+            />
+          ) : (
+            <Notification message="No feedback given" />
+          )}
         </Section>
       </Container>
     );
@@ -48,4 +59,3 @@ class App extends Component {
 }
 
 export default App;
-
